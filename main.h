@@ -7,5 +7,5 @@
 #include <sys/types.h>
 
 void prompt(char **, char **);
-
+char **chstrtok(char *str);
 #endif
