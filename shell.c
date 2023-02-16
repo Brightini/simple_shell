@@ -10,19 +10,22 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
  *
  * Return: Always 0.
  */
-int main(void)
+int main()
 {
 	pid_t child_pid;
 	int status;
 	char **string;
 	size_t n = 20;
-	ssize_t num_char;
+	ssize_t i = 1, num_char;
 	char *ptr;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
+		{
+			i = 0;
 			printf("#cisfun$ ");
+		}
 		ptr = malloc(sizeof(char) * n);
 		num_char = getline(&ptr, &n, stdin);
 		if (num_char == -1)
@@ -30,21 +33,26 @@ int main(void)
 			free(ptr);
 			exit(EXIT_FAILURE);
 		}
-		string = chstrtok(ptr);
-		child_pid = fork();
-		if (child_pid == -1)
+		if (*ptr != '\n')
 		{
-			perror("Error: Fork issue");
-			return (1);
-		}
-		if (child_pid == 0)
-		{
-			if (execvp(string[0], string) == -1)
-				printf("./shell: No such file or directory\n");
-		}
-		else
-		{
-			wait(&status);
+			string = chstrtok(ptr);
+			child_pid = fork();
+			if (child_pid == -1)
+			{
+				perror("Error: Fork issue");
+				return (1);
+			}
+			if (child_pid == 0)
+			{
+				if (execve(string[0], string, NULL) == -1)
+					printf("./shell: No such file or directory\n");
+			}
+			else
+			{
+				if (i == 1)
+					exit(0);
+				wait(&status);
+			}
 		}
 	}
 	exit(0);
