@@ -15,7 +15,8 @@ char **chstrtok(char *str)
 	char **arst, *pars;
 	int i = 0, j = 0;
 
-	if ((arst = malloc(8 * sizeof(char *))) == NULL)
+	arst = malloc(8 * sizeof(char *));
+	if (arst == NULL)
 	{
 		perror("cant allocate space");
 		exit(1);
