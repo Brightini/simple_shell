@@ -1,24 +1,4 @@
-#include "main.h"
-#include <sys/wait.h>
-
-/**
- * _strcspn - finds the index where @c is located in @str
- * @str: string
- * @c: character to be checked
- * Return: index position of @c or
- * total number of characters if @c is not found
-*/
-size_t _strcspn(const char *str, char c)
-{
-	size_t i = 0;
-
-	for (; str[i]; i++)
-	{
-		if (str[i] == c)
-			return (i);
-	}
-	return (i);
-}
+#include "shell.h"
 
 /**
  * prompt - executes a command from terminal.
@@ -28,38 +8,27 @@ size_t _strcspn(const char *str, char c)
  */
 void prompt(char **av, char **env)
 {
-	pid_t child_pid;
 	ssize_t num_char;
 	size_t n = 0;
-	int status;
-	char *string = NULL, *argv[] = {NULL, NULL};
+	int check;
+	char *string = NULL;
 
 	while (1)
 	{
 		/* when input is expected from a user (interactive mode) */
 		if (isatty(STDIN_FILENO))
-			printf("#cisfun$ ");
+			write(STDOUT_FILENO, "#cisfun$ ", 10);
 
 		num_char = getline(&string, &n, stdin);
 		if (num_char == -1) /* handle EOF condition */
-		{
-			free(string);
-			exit(EXIT_FAILURE);
-		}
+			free(string), exit(EXIT_FAILURE);
 
 		/* removes newline character */
 		string[_strcspn(string, '\n')] = 0;
 
-		argv[0] = string;
-
-		child_pid = fork();
-		if (child_pid == 0)
-		{
-			if (execve(argv[0], argv, env) == -1)
-				printf("%s: No such file or directory\n", av[0]);
-		}
-		else
-			wait(&status);
+		check = command_exists(string, av, env);
+		if (check == -1)
+			continue;
 	}
-	exit(EXIT_SUCCESS);
+	free(string), exit(EXIT_SUCCESS);
 }
