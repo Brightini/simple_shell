@@ -18,25 +18,28 @@ int checkinbuilt(char *str)
 
 	for (i = 0; i < 3; i++)
 	{
-		if (strcmp(str, arr[i]) == 0)
+		if (_strcmp(arr[i], str) == 0)
 		{
+			printf("found");
 			break;
 		}
 		i++;
 	}
+	i++;
 	switch (i)
 	{
-	case 0:
+	case 1:
 		chdir(str);
 		return (1);
-	case 1:
+	case 2:
 		printf("bye");
 		return (2);
-	case 2:
+	case 3:
 		username = getenv("USER");
 		printf("Hello %s\n", username);
 		return (1);
 	default:
+		printf("%s %s just it", str, arr[i - 1]);
 		return (0);
 	}
 	return (0);

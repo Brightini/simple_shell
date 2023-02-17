@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <sys/types.h>
 
+int filechk(char *str);
+int _strcmp(char *fi, char *sd);
 void prompt(char **, char **);
 int checkinbuilt(char *str);
 void forkexe(char **arstr);

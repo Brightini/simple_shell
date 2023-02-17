@@ -12,7 +12,7 @@
 int main(void)
 {
 	char **string;
-	size_t n = 20, imbt = 0;
+	size_t n = 20, imbt = 0,  nc = 3;
 	ssize_t num_char;
 	char *ptr;
 
@@ -30,10 +30,13 @@ int main(void)
 		{
 			string = chstrtok(ptr);
 			imbt = checkinbuilt(string[0]);
-			if (imbt == 0)
+			nc = filechk(string[0]);
+			if (imbt == 0 &&  nc == 1)
 				forkexe(string);
-			else if (imbt == 2)
-				continue;
+			if (nc == 2)
+				exit(0);
+			if (nc == 0)
+				printf("./shell: No such file or directory....\n");
 		}
 	}
 	free(ptr);
