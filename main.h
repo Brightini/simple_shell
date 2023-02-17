@@ -12,5 +12,6 @@ void prompt(char **, char **);
 int checkinbuilt(char *str);
 void forkexe(char **arstr);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+int pathchk(char *str);
 char **chstrtok(char *str);
 #endif

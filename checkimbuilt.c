@@ -39,7 +39,6 @@ int checkinbuilt(char *str)
 		printf("Hello %s\n", username);
 		return (1);
 	default:
-		printf("%s %s just it", str, arr[i - 1]);
 		return (0);
 	}
 	return (0);
