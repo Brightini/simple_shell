@@ -22,7 +22,7 @@ void forkexe(char **arstr)
 	}
 	if (child_pid == 0)
 	{
-		if (execvp(arstr[0], arstr) == -1)
+		if (execve(arstr[0], arstr, NULL) == -1)
 			perror("./shell: No such file or directory\n");
 	}
 	else

@@ -12,12 +12,14 @@
 int main(void)
 {
 	char **string;
-	size_t n = 20, imbt = 0,  nc = 3, pt = 4;
+	size_t n = 20, imbt = 0, pt = 4;
 	ssize_t num_char;
-	char *ptr;
+	char *ptr, *nc;
 
 	while (1)
 	{
+		if (isatty(STDIN_FILENO) == 0)
+			exit(0);
 		printf("#cisfun$ ");
 		ptr = malloc(sizeof(char) * n);
 		num_char = getline(&ptr, &n, stdin);
@@ -29,17 +31,19 @@ int main(void)
 		if (*ptr != '\n')
 		{
 			string = chstrtok(ptr);
+			if (_strcmp("exit", string[0]) == 0)
+				exit(0);
 			imbt = checkinbuilt(string[0]);
 			nc = filechk(string[0]);
-			if (imbt == 0 &&  nc == 1)
-				forkexe(string);
+			if (imbt == 0 &&  nc != NULL)
+				string[0] = nc;
 			pt = pathchk(string[0]);
 			if (pt == 1)
 				forkexe(string);
-			if (imbt == 2)
-				exit(0);
-			if (nc == 0 && pt == 0)
-				printf("./shell: No such file or directory....\n");
+			if (nc == NULL && pt == 0 && imbt == 0)
+			{
+				printf("./shell: No such file or directory\n");
+			}
 		}
 	}
 	free(ptr);

@@ -11,8 +11,8 @@
  */
 int pathchk(char *str)
 {
-	char *cmp = "/bin/", *ptr;
-	int i = 0, p = 0, j;
+	char *cmp = "/bin/", *ptr, *j;
+	int i = 0, p = 0;
 
 	ptr = malloc(sizeof(char) * 50);
 	if (ptr == NULL)
@@ -34,7 +34,7 @@ int pathchk(char *str)
 	}
 	ptr[p] = '\0';
 	j = filechk(ptr);
-	if (j == 1)
+	if (j != NULL)
 	{
 		free(ptr);
 		return (1);
