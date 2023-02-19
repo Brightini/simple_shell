@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- * main - Main for Built shell
- *
- * Return: Always 0.
+ * pathchk - Function to check if the string has the path "/bin/"
+ * @str: The string to carryout the check
+ * Return: 0 if false and 1 if true that the path is found
  */
 int pathchk(char *str)
 {

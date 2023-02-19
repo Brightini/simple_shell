@@ -13,8 +13,7 @@ void forkexe(char **arstr)
 {
 	pid_t child_pid;
 	int status;
-	char *envp[] =
-	{
+	char *envp[] = {
 		"USER=julien",
 		"LANGUAGE=en_US",
 		"SESSION=ubuntu",
@@ -25,12 +24,11 @@ void forkexe(char **arstr)
 		"DESKTOP_SESSION=ubuntu",
 		"LOGNAME=julien",
 		"TERM=xterm-256color",
-		"PATH=/home/julien/bin:/home/julien/"
-		".local/bin:/usr/local/sbin:/usr/local"
-		"/bin:/usr/sbin:/usr/bin:/sbin:/bin:/"
-		"usr/games:/usr/local/games:/snap/bin",
+		"PATH=/home/julien/bin:/home/julien/.local/bin:/usr/local/sbin:"
+		"/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bi"
+		"n:/usr/games:/usr/local/games:/snap/bin",
 		"DISPLAY=:0",
-		        0
+		NULL
 	};
 
 	child_pid = fork();

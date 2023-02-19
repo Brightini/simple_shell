@@ -5,8 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- * checkinbuilt - Funtion 2 chk if inbuilt command to execute\
- it and skip fork
+ * checkinbuilt - Funtion 2 chk if inbuilt command to execute  and skip fork
  * @str: string to chect for inbuilt command if present
  * Return: 1 if false and 0 if true
  */
@@ -16,7 +15,7 @@ int checkinbuilt(char *str)
 	int i = 0;
 	char *username;
 
-	arr = malloc(sizeof(char*) * 3);
+	arr = malloc(sizeof(char *) * 3);
 	if (arr == NULL)
 		return (0);
 	arr[0] = "cd";

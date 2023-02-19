@@ -5,9 +5,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- * main - Main for Built shell
- *
- * Return: Always 0.
+ * _strcmp - Function to compare two string
+ * @fi: First string
+ * @sd: Second string
+ * Return: 0 if true and 1 if false
  */
 int _strcmp(char *fi, char *sd)
 {
@@ -22,7 +23,7 @@ int _strcmp(char *fi, char *sd)
 		}
 		i++;
 	}
-	if (len != i )
+	if (len != i)
 		return (1);
 	return (0);
 }

@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- * main - Main for Built shell
- *
- * Return: Always 0.
+ * filechk - Function to check if system cmd exist. if so avoid fork calling
+ * @str: string to apply the check
+ * Return: Append the requied path or Null if false
  */
 char *filechk(char *str)
 {
@@ -15,17 +15,12 @@ char *filechk(char *str)
 	char *temp, c, *cats;
 	FILE *ptr;
 
+	ptr = fopen("file.txt", "r");
+	if (ptr == NULL)
+		return (NULL);
 	temp = malloc(sizeof(char) * 50);
 	if (temp == NULL)
 		return (NULL);
-
-	ptr = fopen("file.txt", "r");
-	if (ptr == NULL)
-	{
-		perror("file open failed");
-		free(temp);
-		return (NULL);
-	}
 	while (!feof(ptr))
 	{
 		c = fgetc(ptr);
