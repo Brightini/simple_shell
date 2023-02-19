@@ -18,7 +18,8 @@ int main(void)
 
 	while (1)
 	{
-		fprintf(stderr, "#cisfun$ ");
+		if (isatty(STDIN_FILENO))
+			printf("#cisfun$ ");
 		ptr = malloc(sizeof(char) * n);
 		num_char = getline(&ptr, &n, stdin);
 		if (num_char == -1)
