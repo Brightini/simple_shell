@@ -18,9 +18,7 @@ int main(void)
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO) == 0)
-			exit(0);
-		printf("#cisfun$ ");
+		fprintf(stderr, "#cisfun$ ");
 		ptr = malloc(sizeof(char) * n);
 		num_char = getline(&ptr, &n, stdin);
 		if (num_char == -1)
@@ -39,13 +37,16 @@ int main(void)
 				string[0] = nc;
 			pt = pathchk(string[0]);
 			if (pt == 1)
+			{
 				forkexe(string);
+			}
 			if (nc == NULL && pt == 0 && imbt == 0)
 			{
 				printf("./shell: No such file or directory\n");
 			}
 		}
 	}
+	free(nc);
 	free(ptr);
 	free(string);
 	exit(0);
