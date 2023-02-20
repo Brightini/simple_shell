@@ -8,12 +8,12 @@
  * _getline - Print "$ " first with the string after it on next line
  * @lineptr: parameter of address holding buffer of string
  * @n: length of string
- *@stream: The stream to receive file;
+ * @stream: The stream to receive file;
  * Return: length of input string
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	char str[120];
+	size_t len = 120, *lenptr = &len;
 
 	if (lineptr == NULL || n == NULL || stream == NULL)
 	{
@@ -22,27 +22,32 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 	}
 	if (*lineptr == NULL)
 	{
-		if ((*lineptr = malloc(sizeof(str))) == NULL)
+		*lineptr = realloc(*lineptr, sizeof(char) * *lenptr);
+		if (*lineptr == NULL)
 		{
 			perror("Unable to allocate memory");
 			exit(1);
 		}
 	}
-	*lineptr[0] = '\0';
-	while (fgets(*lineptr, *n, stream))
+	else
+		*lineptr = realloc(*lineptr, *lenptr);
+	while (1)
 	{
-		if ((*n - strlen(*lineptr)) < sizeof(str))
+		fgets(*lineptr, *lenptr, stream);
+		if (strlen(*lineptr) > (*lenptr - 10))
 		{
-			*n *= 2;
-			if ((*lineptr = realloc(*lineptr, *n)) == NULL)
-			{
-				perror("Unable to reallocate memory");
+			*lenptr = *lenptr * 2;
+			*lineptr = realloc(*lineptr, strlen(*lineptr));
+			if (*lineptr == NULL)
 				exit(1);
-			}
 		}
-		strcat(*lineptr, str);
-		if ((*lineptr)[strlen(*lineptr) - 1] == '\n')
-			return (strlen(*lineptr));
+		else
+			if ((*lineptr)[strlen(*lineptr) - 1] == '\n')
+			{
+				*n = strlen(*lineptr);
+				*lineptr[*n] = '\0';
+				return (strlen(*lineptr));
+			}
 	}
 	return (0);
 }
