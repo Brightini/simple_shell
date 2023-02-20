@@ -11,7 +11,7 @@ char *_strcat(char *des, char *src);
 int _strcmp(char *fi, char *sd);
 void prompt(char **, char **);
 int checkinbuilt(char *str);
-void forkexe(char **arstr);
+void forkexe(char **arstr, char *envp[]);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int pathchk(char *str);
 char **chstrtok(char *str);

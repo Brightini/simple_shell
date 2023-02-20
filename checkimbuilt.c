@@ -41,7 +41,7 @@ int checkinbuilt(char *str)
 		free(arr);
 		return (2);
 	case 3:
-		username = getenv("USER");
+		username = getenv("HOSTNAME");
 		printf("Hello %s\n", username);
 		free(arr);
 		return (1);
