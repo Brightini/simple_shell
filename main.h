@@ -1,18 +1,26 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define MAX_COMMANDS 20
+
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <dirent.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
-char *filechk(char *str);
-char *_strcat(char *des, char *src);
-int _strcmp(char *fi, char *sd);
+char *create_path(char *);
 void prompt(char **, char **);
-int checkinbuilt(char *str);
-void forkexe(char **arstr, char *envp[]);
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-int pathchk(char *str);
-char **chstrtok(char *str);
+void exec_command(char **, char **, char **);
+ssize_t _getline(char **, size_t *, FILE *);
+int path_check(char *);
+char **split_line(char *);
+
+/* In string_func.c */
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *_strcat(char *, char *);
+
 #endif

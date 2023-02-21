@@ -1,16 +1,13 @@
 #include "main.h"
-#include <sys/wait.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+
 /**
- * forkexe - System execution with fork
+ * exec_command - create child process to execute shell command
+ *
  * @arstr: Array of strings gotten from line command
  * @envp: Environment variables from the parent
  * Return: void
  */
-void forkexe(char **arstr, char *envp[])
+void exec_command(char **arr_str, char **av, char *envp[])
 {
 	pid_t child_pid;
 	int status;
@@ -23,8 +20,8 @@ void forkexe(char **arstr, char *envp[])
 	}
 	if (child_pid == 0)
 	{
-		if (execve(arstr[0], arstr, envp) == -1)
-			perror("./shell: No such file or directory\n");
+		if (execve(arr_str[0], arr_str, envp) == -1)
+			printf("%s: No such file or directory\n", av[0]);
 	}
 	else
 	{
