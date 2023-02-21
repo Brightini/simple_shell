@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * exec_command - create child process to execute shell command

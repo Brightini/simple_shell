@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * file_check - check if command exists and then

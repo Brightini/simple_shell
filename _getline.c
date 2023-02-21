@@ -1,9 +1,5 @@
-#include "main.h"
-#include <sys/wait.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "shell.h"
+
 /**
  * _getline - Print "$ " first with the string after it on next line
  * @lineptr: parameter of address holding buffer of string
