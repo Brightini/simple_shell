@@ -12,6 +12,9 @@ void exec_command(char **arr_str, char **av, char *envp[])
 {
 	pid_t child_pid;
 	int status;
+	char *err_message;
+
+	err_message = _strcat(av[0], ": No such file or directory\n");
 
 	child_pid = fork();
 	if (child_pid < 0)
@@ -22,7 +25,7 @@ void exec_command(char **arr_str, char **av, char *envp[])
 	if (child_pid == 0)
 	{
 		if (execve(arr_str[0], arr_str, envp) == -1)
-			printf("%s: No such file or directory\n", av[0]);
+			write(STDERR_FILENO, err_message, _strlen(err_message));
 	}
 	else
 		wait(&status);
