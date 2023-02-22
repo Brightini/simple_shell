@@ -25,7 +25,7 @@ int main(int argc, char *argv[], char *envp[])
 		if (isatty(STDIN_FILENO))
 			printf("#cisfun$ ");
 		ptr = malloc(sizeof(char) * n);
-		num_char = getline(&ptr, &n, stdin);
+		num_char = _getline(&ptr, &n, stdin);
 		if (num_char == -1)
 		{
 			free(ptr);
