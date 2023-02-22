@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * file_check - check if command exists and then
+ * create_path - check if command exists and then
  * constructs a path to the command.
  *
  * @str: string to apply the check

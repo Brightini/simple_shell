@@ -10,7 +10,7 @@
 int main(int argc, char *argv[], char *envp[])
 {
 	char **arr_str;
-	size_t n = 0, status;
+	size_t n = 0, imbt, status;
 	ssize_t num_char;
 	char *line = NULL, *command_path;
 
@@ -29,8 +29,7 @@ int main(int argc, char *argv[], char *envp[])
 		if (*line != '\n')
 		{
 			arr_str = split_line(line);
-			if (_strcmp("exit", arr_str[0]) == 0)
-				free(line), exit(EXIT_FAILURE);
+			imbt = match_builtin(arr_str);
 
 			/* for commands without path */
 			command_path = create_path(arr_str[0]);
@@ -42,7 +41,7 @@ int main(int argc, char *argv[], char *envp[])
 
 			if (status == 1 || command_path)
 				exec_command(arr_str, argv, envp);
-			if (status != 1 && !command_path)
+			if (status != 1 && !command_path && imbt == 0)
 				printf("%s: command not found\n", arr_str[0]);
 		}
 	}

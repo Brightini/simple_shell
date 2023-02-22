@@ -3,7 +3,8 @@
 /**
  * exec_command - create child process to execute shell command
  *
- * @arstr: Array of strings gotten from line command
+ * @arr_str: Array of strings gotten from (tokenised) line command
+ * @av: Array of strings from terminal
  * @envp: Environment variables from the parent
  * Return: void
  */
@@ -24,7 +25,5 @@ void exec_command(char **arr_str, char **av, char *envp[])
 			printf("%s: No such file or directory\n", av[0]);
 	}
 	else
-	{
 		wait(&status);
-	}
 }

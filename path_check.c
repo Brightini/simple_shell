@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * pathchk - check if command path is valid
+ * path_check - check if command path is valid
  *
  * @str: (str) command path
  * Return: 0 if false, otherwise 1
@@ -14,14 +14,14 @@ int path_check(char *str)
 	ptr = malloc(sizeof(char) * MAX_COMMANDS);
 	if (!ptr)
 	{
-		free (ptr);
+		free(ptr);
 		return (0);
 	}
 	while (cmp[i] != '\0')
 	{
 		if (cmp[i] != str[i])
 		{
-			free (ptr);
+			free(ptr);
 			return (0);
 		}
 		i++;
@@ -33,7 +33,7 @@ int path_check(char *str)
 	j = create_path(ptr);
 	if (j)
 	{
-		free (ptr);
+		free(ptr);
 		return (1);
 	}
 	return (0);
