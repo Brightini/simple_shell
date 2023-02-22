@@ -37,8 +37,8 @@ size_t _setenv(char **str)
 	{
 		name = str[1];
 		value = str[2];
-
-
+		if (name && value)
+			return (1);
 	}
 	return (0);
 }
