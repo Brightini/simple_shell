@@ -18,8 +18,7 @@ int main(int argc, char *argv[], char *envp[])
 	{
 		err_mess = _strcat("Usage: ", argv[0]);
 		write(STDERR_FILENO, err_mess, _strlen(err_mess));
-		write(STDERR_FILENO, "\n", 1);
-		exit(EXIT_FAILURE);
+		write(STDERR_FILENO, "\n", 1), exit(EXIT_FAILURE);
 	}
 	while (1)
 	{
@@ -30,7 +29,6 @@ int main(int argc, char *argv[], char *envp[])
 		num_char = getline(&line, &n, stdin);
 		if (num_char == -1)
 			free(line), exit(EXIT_FAILURE);
-
 		if (*line != '\n')
 		{
 			arr_str = split_line(line);
@@ -49,7 +47,5 @@ int main(int argc, char *argv[], char *envp[])
 				write(STDERR_FILENO, error_message, _strlen(error_message));
 		}
 	}
-	free(arr_str);
-	free(line);
-	exit(0);
+	free(arr_str), free(line), exit(0);
 }
