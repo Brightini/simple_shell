@@ -12,10 +12,15 @@ int main(int argc, char *argv[], char *envp[])
 	char **arr_str;
 	size_t n = 0, imbt, status;
 	ssize_t num_char;
-	char *line = NULL, *command_path, *error_message;
+	char *line = NULL, *command_path, *err_mess, *error_message;
 
 	if (argc > 1)
-		argv[1] = NULL;
+	{
+		err_mess = _strcat("Usage: ", argv[0]);
+		write(STDERR_FILENO, err_mess, _strlen(err_mess));
+		write(STDERR_FILENO, "\n", 1);
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 	{
 		/* for interactive mode only */
