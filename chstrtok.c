@@ -21,7 +21,7 @@ char **chstrtok(char *str)
 		perror("cant allocate space");
 		exit(1);
 	}
-	pars = strtok(str, " ");
+	pars = _strtok(str, " ");
 	while (pars != NULL)
 	{
 		while (pars[j])
@@ -33,7 +33,7 @@ char **chstrtok(char *str)
 		arst[i] = pars;
 		i++;
 		j = 0;
-		pars = strtok(NULL, " ");
+		pars = _strtok(NULL, " ");
 	}
 	arst[i] = NULL;
 	return (arst);

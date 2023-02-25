@@ -1,4 +1,4 @@
-#include "main.h"
+/*#include "main.h"
 #include <sys/wait.h>
 #include <stdio.h>
 #include <string.h>
@@ -9,7 +9,7 @@
  * @str: The string to carryout the check
  * Return: 0 if false and 1 if true that the path is found
  */
-int pathchk(char *str)
+/*int pathchk(char *str)
 {
 	char *cmp = "/bin/", *ptr, *j;
 	int i = 0, p = 0;
@@ -41,3 +41,4 @@ int pathchk(char *str)
 	}
 	return (0);
 }
+*/

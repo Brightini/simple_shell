@@ -1,4 +1,4 @@
-#include "main.h"
+/*#include "main.h"
 #include <sys/wait.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,7 +10,7 @@
  * @envp: Environment variables from the parent
  * Return: void
  */
-void forkexe(char **arstr, char *envp[])
+/*void forkexe(char **arstr, char *envp[])
 {
 	pid_t child_pid;
 	int status;
@@ -28,6 +28,7 @@ void forkexe(char **arstr, char *envp[])
 	}
 	else
 	{
-		wait(&status);
+		waitpid(child_pid, &status, 0);
 	}
 }
+*/

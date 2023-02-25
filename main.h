@@ -8,6 +8,7 @@
 
 char *filechk(char *str);
 char *_strcat(char *des, char *src);
+char *_strcpy(char *dest, const char *src);
 int _strcmp(char *fi, char *sd);
 void prompt(char **, char **);
 int checkinbuilt(char *str);
