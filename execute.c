@@ -18,10 +18,8 @@ void exec_command(char **arr_str, char **av, char *envp[])
 
 	child_pid = fork();
 	if (child_pid < 0)
-	{
-		perror("Error: Fork issue");
-		return;
-	}
+		free(arr_str), exit(EXIT_FAILURE);
+
 	if (child_pid == 0)
 	{
 		if (execve(arr_str[0], arr_str, envp) == -1)

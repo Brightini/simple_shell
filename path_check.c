@@ -4,7 +4,7 @@
  * path_check - check if command path is valid
  *
  * @str: (str) command path
- * Return: 0 if false, otherwise 1
+ * Return: 0 if true, otherwise 1
  */
 int path_check(char *str)
 {
@@ -15,14 +15,14 @@ int path_check(char *str)
 	if (!ptr)
 	{
 		free(ptr);
-		return (0);
+		return (1);
 	}
 	while (cmp[i] != '\0')
 	{
 		if (cmp[i] != str[i])
 		{
 			free(ptr);
-			return (0);
+			return (1);
 		}
 		i++;
 	}
@@ -34,7 +34,7 @@ int path_check(char *str)
 	if (j)
 	{
 		free(ptr);
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }

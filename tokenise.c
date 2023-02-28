@@ -12,8 +12,8 @@ char **split_line(char *str)
 	int i = 0, j = 0;
 
 	arr_str = malloc(MAX_COMMANDS * sizeof(char *));
-	if (arr_str == NULL)
-		perror("Can't allocate space\n"), exit(EXIT_FAILURE);
+	if (!arr_str)
+		exit(EXIT_FAILURE);
 
 	/* to eliminate newline character */
 	while (str[j])
