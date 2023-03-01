@@ -9,10 +9,9 @@
  */
 int main(int argc, char *argv[], char *envp[])
 {
-	char **arr_str;
 	size_t n = 0, inbt, status;
 	ssize_t num_char;
-	char *line = NULL, *command_path, *err_mess, *error_message;
+	char *line = NULL, *command_path, *err_mess, *error_message, **arr_str;
 
 	if (argc > 1)
 	{
@@ -22,8 +21,7 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	while (1)
 	{
-		/* for interactive mode only */
-		if (isatty(STDIN_FILENO))
+		if (isatty(STDIN_FILENO)) /* for interactive mode only */
 			write(STDOUT_FILENO, "#cisfun$ ", 10);
 		/* fetch user's command from terminal */
 		num_char = _getline(&line, &n, stdin);
@@ -38,11 +36,14 @@ int main(int argc, char *argv[], char *envp[])
 			command_path = create_path(arr_str[0]);
 			if (command_path)
 				arr_str[0] = command_path;
-			/* for commands with path */
-			else
+			else /* for commands with path */
 				status = path_check(arr_str[0]);
 			if (status == 0 || command_path)
+			{
 				exec_command(arr_str, argv, envp);
+				if (isatty(STDIN_FILENO) == 0)
+					exit(EXIT_SUCCESS);
+			}
 			if (status != 0 && !command_path && inbt == 0)
 				write(STDERR_FILENO, error_message, _strlen(error_message));
 		}

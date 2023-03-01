@@ -17,6 +17,7 @@ int path_check(char *str)
 		free(ptr);
 		return (1);
 	}
+	/* check if path is valid */
 	while (cmp[i] != '\0')
 	{
 		if (cmp[i] != str[i])
@@ -26,9 +27,9 @@ int path_check(char *str)
 		}
 		i++;
 	}
+	/* check if command is valid */
 	while (str[i] != '\0')
 		ptr[p] = str[i], p++, i++;
-
 	ptr[p] = '\0';
 	j = create_path(ptr);
 	if (j)
