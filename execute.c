@@ -23,7 +23,10 @@ void exec_command(char **arr_str, char **av, char *envp[])
 	if (child_pid == 0)
 	{
 		if (execve(arr_str[0], arr_str, envp) == -1)
+		{
 			write(STDERR_FILENO, err_message, _strlen(err_message));
+			exit(2);
+		}
 	}
 	else
 		wait(&status);
