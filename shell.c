@@ -26,7 +26,7 @@ int main(int argc, char *argv[], char *envp[])
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "#cisfun$ ", 10);
 		/* fetch user's command from terminal */
-		num_char = getline(&line, &n, stdin);
+		num_char = _getline(&line, &n, stdin);
 		if (num_char == -1)
 			free(line), exit(EXIT_FAILURE);
 		if (*line != '\n')
