@@ -47,7 +47,7 @@ int (*get_builtin(char *command))(char **args, char **front)
  */
 int shellby_exit(char **args, char **front)
 {
-	int i, len_of_int = 10;
+	int i = 0, len_of_int = 10;
 	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
 	if (args[0])
